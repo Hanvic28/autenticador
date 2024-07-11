@@ -8,15 +8,21 @@ class UsuarioController{
 
         try{
 
-         await validaEntrada(req.body);
+            await validaEntrada(req.body);
 
-             const modelUsuario = new ModelUsuario();
-             const retorno = await modelUsuario.insereUsuario(req.body);
+            if(selecionaUsuario(req.body)){
+                res.status(400).send({status:"NOK", messagem: "Usuario já cadastrado"})
+                return ""
+            };
 
-         console.log(req.body)
-        res.status(201).send({status:"Ok", message:"Usuario Cadastrado"})
+            const modelUsuario = new ModelUsuario();
+            const retorno = await modelUsuario.insereUsuario(req.body);
+
+            console.log(req.body)
+            res.status(201).send({status:"Ok", message:"Usuario Cadastrado com sucesso"})
+
         }catch(err){
-         res.status(401).send({status:"NOK", messagem: err.message})
+            res.status(400).send({status:"NOK", messagem: err.message})
         }
     }
 
@@ -28,7 +34,10 @@ class UsuarioController{
                 const modelUsuario = new ModelUsuario();
                 const retorno = await modelUsuario.Login(req.body);
 
-                console.log(req.body)
+                if(!selecionaUsuario(req.body)){
+                    console.log(retorno.length)
+                }
+
                 res.status(200).send({status:"OK", message:"Usuario Logado"})
             }catch(err){
                 res.status(401).send({status:"NOK", message: err.message})
@@ -84,6 +93,24 @@ async function validaLogin (dadosEntrada){
         
     
 }
+
+async function selecionaUsuario(usuario){
+
+    try{
+        const modelUsuario = new ModelUsuario();
+        const retorno = await modelUsuario.Login(usuario);
+
+
+        if(retorno.length == 0){
+
+           return false
+        };
+
+        return true
+    }catch(err){
+        throw new Error("Banco de dados não logado")
+    }
+};
 
         
 
