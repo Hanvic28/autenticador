@@ -4,7 +4,9 @@ const Joi = require('joi')
 
 class UsuarioController{
 
-      async InsereUsuario(req, res){
+    async InsereUsuario(req, res){
+
+        try{
 
          await validaEntrada(req.body);
 
@@ -12,11 +14,13 @@ class UsuarioController{
              const retorno = await modelUsuario.insereUsuario(req.body);
 
          console.log(req.body)
-        res.status(201).send("Usuario Cadastrado")
-
+        res.status(201).send({status:"Ok", message:"Usuario Cadastrado"})
+        }catch(err){
+         res.status(401).send({status:"NOK", messagem: err.message})
         }
+    }
 
-        async Login(req, res){
+    async Login(req, res){
 
             try{
                 await validaLogin(req.body);
@@ -27,12 +31,11 @@ class UsuarioController{
                 console.log(req.body)
                 res.status(200).send({status:"OK", message:"Usuario Logado"})
             }catch(err){
-                res.status(401).send({status:"NOK", message:"Usuario Não Autenticado"})
+                res.status(401).send({status:"NOK", message: err.message})
             }
-       }
+   }
    
 }   
-
 
     
 async function validaEntrada (dadosEntrada){
@@ -45,6 +48,12 @@ async function validaEntrada (dadosEntrada){
              rep_senha: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$'))
         }
         )
+
+        if(dadosEntrada.senha !== dadosEntrada.rep_senha){
+            throw new Error("senha não se batem")
+
+        };
+
             const value = await schema.validateAsync(dadosEntrada);
 
         }catch(erro){
@@ -52,10 +61,10 @@ async function validaEntrada (dadosEntrada){
             throw new Error('Erro de validação: ' + erro.message)
     }
     
-    }
+}
 
 
-    async function validaLogin (dadosEntrada){
+async function validaLogin (dadosEntrada){
 
         try{
     
@@ -74,7 +83,7 @@ async function validaEntrada (dadosEntrada){
             }
         
     
-        }
+}
 
         
 
