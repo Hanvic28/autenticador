@@ -1,17 +1,15 @@
-import { number } from 'joi';
+import Joi from 'joi';
 import { Request, Response } from 'express';
 import { Usuario } from '../@types/usuario';
+import { knex } from 'src/models/conexão';
+import { ModelUsuario } from 'src/models/modelUsuario';
 
-const ModelUsuario = require('../models/modelUsuario.js');
-const knex = require('../models/conexão.js');
-const Joi = require('joi');
-
-class UsuarioController {
+export class UsuarioController {
 	async InsereUsuario(req: Request, res: Response) {
 		try {
 			await validaEntrada(req.body);
 
-			if (selecionaUsuario(req.body)) {
+			if (await selecionaUsuario(req.body)) {
 				res.status(400).send({ status: 'NOK', messagem: 'Usuario já cadastrado' });
 				return '';
 			}
@@ -27,7 +25,7 @@ class UsuarioController {
 		}
 	}
 
-	async Login(req: senha_usuario, res: menssagem) {
+	async Login(req: Request, res: Response) {
 		try {
 			await validaLogin(req.body);
 
@@ -45,7 +43,7 @@ class UsuarioController {
 	}
 }
 
-async function validaEntrada(dadosEntrada: senha_usuario) {
+async function validaEntrada(dadosEntrada: Usuario) {
 	try {
 		const schema = Joi.object({
 			nome: Joi.string().min(4).max(150).required(),
@@ -63,7 +61,7 @@ async function validaEntrada(dadosEntrada: senha_usuario) {
 	}
 }
 
-async function validaLogin(dadosEntrada: senha_usuario) {
+async function validaLogin(dadosEntrada: Usuario) {
 	try {
 		const schema = Joi.object({
 			nome: Joi.string().min(4).max(150).required(),
@@ -76,7 +74,7 @@ async function validaLogin(dadosEntrada: senha_usuario) {
 	}
 }
 
-async function selecionaUsuario(usuario: senha_usuario) {
+async function selecionaUsuario(usuario: Usuario) {
 	try {
 		const modelUsuario = new ModelUsuario();
 		const retorno = await modelUsuario.Login(usuario);
@@ -90,5 +88,3 @@ async function selecionaUsuario(usuario: senha_usuario) {
 		throw new Error('Banco de dados não logado');
 	}
 }
-
-module.exports = UsuarioController;

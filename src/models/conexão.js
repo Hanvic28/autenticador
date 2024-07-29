@@ -1,4 +1,4 @@
-const knex = require('knex')({
+export const knex = require('knex')({
     client: 'mysql2',
     connection: {
       host: '127.0.0.1',
@@ -8,5 +8,3 @@ const knex = require('knex')({
       database: 'autenticador',
     },
   });
-
-  module.exports = knex;
