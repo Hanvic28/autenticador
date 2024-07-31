@@ -3,10 +3,11 @@ import { Request, Response } from 'express';
 import { Usuario } from '../@types/usuario';
 import { knex } from 'src/models/conexão';
 import { ModelUsuario } from 'src/models/modelUsuario';
+import { Criptografia } from 'src/uteis/criptografia';
 
 export class UsuarioController {
-	async InsereUsuario(req: Request, res: Response) {
-		try {
+	async InsereUsuario(req: Request, res: Response): Promise<any> {
+		try{
 			await validaEntrada(req.body);
 
 			if (await selecionaUsuario(req.body)) {
@@ -15,7 +16,7 @@ export class UsuarioController {
 			}
 
 			const modelUsuario = new ModelUsuario();
-			const retorno = await modelUsuario.insereUsuario(req.body);
+			const retorno: number[] = await modelUsuario.insereUsuario(req.body);
 
 			console.log(req.body);
 			res.status(201).send({ status: 'Ok', message: 'Usuario Cadastrado com sucesso' });
@@ -25,12 +26,12 @@ export class UsuarioController {
 		}
 	}
 
-	async Login(req: Request, res: Response) {
+	async Login(req: Request, res: Response): Promise<any> {
 		try {
 			await validaLogin(req.body);
 
 			const modelUsuario = new ModelUsuario();
-			const retorno = await modelUsuario.Login(req.body);
+			const retorno: Usuario[] = await modelUsuario.Login(req.body);
 
 			if (!selecionaUsuario(req.body)) {
 				console.log(retorno.length);
@@ -43,7 +44,7 @@ export class UsuarioController {
 	}
 }
 
-async function validaEntrada(dadosEntrada: Usuario) {
+async function validaEntrada(dadosEntrada: Usuario): Promise<any> {
 	try {
 		const schema = Joi.object({
 			nome: Joi.string().min(4).max(150).required(),
@@ -55,29 +56,29 @@ async function validaEntrada(dadosEntrada: Usuario) {
 			throw new Error('senha não se batem');
 		}
 
-		const value = await schema.validateAsync(dadosEntrada);
+		const value: Usuario = await schema.validateAsync(dadosEntrada);
 	} catch (erro) {
 		throw new Error('Erro de validação: ' + erro.message);
 	}
 }
 
-async function validaLogin(dadosEntrada: Usuario) {
+async function validaLogin(dadosEntrada: Usuario): Promise<any> {
 	try {
 		const schema = Joi.object({
 			nome: Joi.string().min(4).max(150).required(),
 			senha: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),
 		});
 
-		const value = await schema.validateAsync(dadosEntrada);
+		const value: Usuario = await schema.validateAsync(dadosEntrada);
 	} catch (erro) {
 		throw new Error('Erro de validação: ' + erro.message);
 	}
 }
 
-async function selecionaUsuario(usuario: Usuario) {
+async function selecionaUsuario(usuario: Usuario): Promise<any> {
 	try {
 		const modelUsuario = new ModelUsuario();
-		const retorno = await modelUsuario.Login(usuario);
+		const retorno: Usuario[] = await modelUsuario.Login(usuario);
 
 		if (retorno.length == 0) {
 			return false;
