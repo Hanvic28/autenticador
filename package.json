@@ -3,11 +3,11 @@
 	"version": "1.0.0",
 	"description": "",
 	"main": "server.js",
+	"type": "module",
 	"scripts": {
-		"start": "nodemon",
+		"start": "tsx watch src/server.js",
 		"test": "node --experimental-vm-modules node_modules/jest/bin/jest.js ./test",
-		"build": "tsc",
-		"type": "module"
+		"build": "tsc"
 	},
 	"keywords": [],
 	"author": "",
@@ -21,13 +21,14 @@
 		"js-md5": "^0.8.3",
 		"knex": "^3.1.0",
 		"md5": "^2.3.0",
-		"mysql2": "^3.10.1"
+		"mysql2": "^3.10.1",
+		"prettier": "^3.3.3"
 	},
 	"devDependencies": {
 		"@types/jest": "^29.5.12",
 		"jest": "^29.7.0",
 		"nodemon": "^3.1.4",
-		"prettier": "^3.3.3",
+		"tsx": "^4.17.0",
 		"typescript": "^5.5.4"
 	}
 }

@@ -1,13 +1,13 @@
 import Joi from 'joi';
 import { Request, Response } from 'express';
 import { Usuario } from '../@types/usuario';
-import { knex } from 'src/models/conexão';
+import { dbconn } from 'src/models/conexao';
 import { ModelUsuario } from 'src/models/modelUsuario';
 import { Criptografia } from 'src/uteis/criptografia';
 
 export class UsuarioController {
 	async InsereUsuario(req: Request, res: Response): Promise<any> {
-		try{
+		try {
 			await validaEntrada(req.body);
 
 			if (await selecionaUsuario(req.body)) {

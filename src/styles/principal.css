@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;1,300&display=swap');
+@import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
+
+body {
+	background-color: #9ee1f2;
+	border-style: solid;
+	border-width: 1px;
+	font-family: roboto;
+}
+
+li {
+	text-decoration: none;
+}
+
+a {
+	color: red;
+	text-decoration: none;
+}
+
+.cabecario {
+	width: 100px;
+	height: 100px;
+	border-style: solid;
+	border-color: black;
+	border-width: 2px;
+}
+
+.footerBack {
+	width: 1366px;
+	height: max-content;
+	background-color: #84c9e5;
+}
+
+header {
+	border-style: solid;
+	border-width: 1px;
+}
+
+footer {
+	border-style: solid;
+	border-width: 1px;
+}
+
+nav {
+	display: inline-block;
+	border-style: solid;
+	border-width: 1px;
+}
+
+section {
+	border-style: solid;
+	border-width: 1px;
+}
