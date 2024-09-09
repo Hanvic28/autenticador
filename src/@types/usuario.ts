@@ -1,6 +1,6 @@
 export type Usuario = {
 	id?: number;
-	senha: String;
+	senha: string[number];
 	nome: String;
 	rep_senha: string;
 };

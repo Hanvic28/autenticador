@@ -2,10 +2,14 @@
 @import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
 
 body {
-	background-color: #9ee1f2;
+	background-color: #fae496;
 	border-style: solid;
 	border-width: 1px;
 	font-family: roboto;
+}
+
+ul li {
+	display: inline;
 }
 
 li {
@@ -13,22 +17,26 @@ li {
 }
 
 a {
-	color: red;
+	color: black;
 	text-decoration: none;
 }
 
 .cabecario {
-	width: 100px;
-	height: 100px;
+	max-width: 150px;
+	height: 150px;
 	border-style: solid;
 	border-color: black;
 	border-width: 2px;
+	font-size:24px;
+	text-transform: uppercase;
+	letter-spacing: 4px;
 }
 
 .footerBack {
-	width: 1366px;
+	max-width: 100%;
+	height: auto;
 	height: max-content;
-	background-color: #84c9e5;
+	background-color: #fce07b;
 }
 
 header {
@@ -42,12 +50,52 @@ footer {
 }
 
 nav {
-	display: inline-block;
+	justify-content: space-around;
+	align-content: center;
+	background: #ff9036;
 	border-style: solid;
 	border-width: 1px;
+	height: 10vh;
+}
+
+.nav-list {
+	list-style: none;
+	display: flex;
+}
+
+.nav-list li {
+	letter-spacing: 3px;
+	margin-left: 32px;
 }
 
 section {
 	border-style: solid;
 	border-width: 1px;
+}
+
+div#whatsapp {
+	color:forestgreen 
+}
+
+.site {
+	color: black;
+	text-decoration: underline;
+}
+
+@keyframes botao {
+	0%{
+		transform: scale(1);
+	}
+
+	100%{
+		color: red;
+	}
+}
+
+a:hover{
+	animation-name: botao;
+	animation-timing-function: ease-in-out;
+	animation-duration: 0.5s;
+	animation-iteration-count: 1;
+	animation-direction:alternate-reverse ;
 }

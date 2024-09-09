@@ -3,14 +3,13 @@ import { Request, Response } from 'express';
 import { Usuario } from '../@types/usuario';
 import { dbconn } from 'src/models/conexao';
 import { ModelUsuario } from 'src/models/modelUsuario';
-import { Criptografia } from 'src/uteis/criptografia';
 
 export class UsuarioController {
 	async InsereUsuario(req: Request, res: Response): Promise<any> {
 		try {
 			await validaEntrada(req.body);
 
-			if (await selecionaUsuario(req.body)) {
+			if (await selecionaUsuario(req.body) > 0) {
 				res.status(400).send({ status: 'NOK', messagem: 'Usuario já cadastrado' });
 				return '';
 			}
@@ -33,11 +32,13 @@ export class UsuarioController {
 			const modelUsuario = new ModelUsuario();
 			const retorno: Usuario[] = await modelUsuario.Login(req.body);
 
-			if (!selecionaUsuario(req.body)) {
-				console.log(retorno.length);
+			if (await selecionaUsuario(req.body) > 0) {
+				res.status(200).send({ status: 'OK', message: 'Usuario Logado' });
+				console.log('12')
 			}
 
-			res.status(200).send({ status: 'OK', message: 'Usuario Logado' });
+			res.status(200).send({status: "NOK", message: 'Dados Incorretos'});
+			
 		} catch (err) {
 			res.status(401).send({ status: 'NOK', message: err.message });
 		}
@@ -81,7 +82,7 @@ async function selecionaUsuario(usuario: Usuario): Promise<any> {
 		const retorno: Usuario[] = await modelUsuario.Login(usuario);
 
 		if (retorno.length == 0) {
-			return false;
+			return retorno;
 		}
 
 		return true;
