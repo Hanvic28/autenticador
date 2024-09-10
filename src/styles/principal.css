@@ -8,6 +8,25 @@ body {
 	font-family: roboto;
 }
 
+.container {
+	display: flex;
+	justify-content: flex-start;
+}
+
+.links {
+	margin-left: 1200px;
+}
+
+.item {
+	display: flex;
+	justify-content: center;
+}
+
+.lista {
+	display: inline;
+	flex-direction: column;
+}
+
 ul li {
 	display: inline;
 }
@@ -23,13 +42,11 @@ a {
 
 .cabecario {
 	max-width: 150px;
-	height: 150px;
+	height: 9vh;
 	border-style: solid;
 	border-color: black;
 	border-width: 2px;
-	font-size:24px;
 	text-transform: uppercase;
-	letter-spacing: 4px;
 }
 
 .footerBack {
@@ -73,29 +90,25 @@ section {
 	border-width: 1px;
 }
 
-div#whatsapp {
-	color:forestgreen 
-}
-
 .site {
 	color: black;
 	text-decoration: underline;
 }
 
 @keyframes botao {
-	0%{
+	0% {
 		transform: scale(1);
 	}
 
-	100%{
-		color: red;
+	100% {
+		color: white;
 	}
 }
 
-a:hover{
+a:hover {
 	animation-name: botao;
 	animation-timing-function: ease-in-out;
 	animation-duration: 0.5s;
 	animation-iteration-count: 1;
-	animation-direction:alternate-reverse ;
+	animation-direction: alternate-reverse;
 }
