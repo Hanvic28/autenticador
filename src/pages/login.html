@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Ambulância</title>
+		<title>Criativa</title>
 		<link rel="stylesheet" type="text/css" href="../styles/principal.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<!-- <style type="text/css">
@@ -17,41 +17,38 @@
 	</head>
 	<body>
 		<header>
-			<a href="index.html">
-				<img src="../material/Ewg_logo.jpg" class="cabecario"/>
-			</a>
-            <div id="texto_cabecario">
-			    <h1>Ambulância</h1>
-			    <h2>Sistema de gestão de Ambulância</h2>
-           </div>
+
 			<nav>
-				<div name="lista">
-					<div>Nossos Acessos</div>
-					<a href="index.html" class="nav">Home</a>
-					<a href="sobre.html" class="nav">Sobre nós</a>
-					<a href="http://globo.com" class="nav">globo</a>
-					<a href="cadastro.html" class="nav">Cadastro</a>
+				<a class="logo" href="index.html">
+					<img src="../material/CRIATIVA E BORDADOS LOGO 1 COLORIDA.png" class="logo_img">Criativa Bordados
+				  </a>
 				</div>
+				<ul class="nav-list">
+				  <li><a href="index.html">Início</a></li>
+				  <li><a href="Sobre.html">Sobre</a></li>
+				  <li><a href="login.html">Login</a></li>
+				  <li><a href="cadastro.html">Cadastro</a></li>
+				</ul>
 			</nav>
+
 		</header>
 		<section>
-            <form action="http://localhost:32/login" method="post">
-                <label for="nome"> Informe Usuario </label>
-                <input type="text" name = "nome"></input>
-                <br/>
-                <label for="senha"> Informe Senha </label>
-                <input type="password" name = "senha"></input>
-        
-                <button type="submit"> Login </button>
-
-            </form>
+			<form action="http://localhost:32/login" method="post">
+				<label for="nome"> Informe Usuario </label>
+				<input type="text" name = "nome"></input>
+				<br/>
+				<label for="senha"> Informe Senha </label>
+				<input type="password" name = "senha"></input>
+			
+				<button type="submit"> Login </button>
+			</form>
 		</section>
         <div class="footerBack">
 		    <footer>
 			    <h4>Fale conosco</h4>
-			    <div class="fa fa-car">Whatsapp</div>
+			    <div id="whatsapp" class='fas fa-comment'>Whatsapp</div>
 			    <p>32 9864-8404</p>
-			    <p>ou acesse <h5 href="https://">www.ewgresgate.com</h5></p>
+			    <p>ou acesse <h5>www.ewgresgate.com</h5></p>
 			    <h5>Obs: Datas e horários agendados </h5>
 			    <ul>
 				    <li><a href="cadastro.html">Cadastro</a></li>
