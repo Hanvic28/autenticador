@@ -45,6 +45,9 @@ export class UsuarioController {
 	}
 }
 
+
+
+
 async function validaEntrada(dadosEntrada: Usuario): Promise<any> {
 	try {
 		const schema = Joi.object({

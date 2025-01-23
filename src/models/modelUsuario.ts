@@ -1,10 +1,14 @@
 import { dbconn } from './conexao';
 import { Usuario } from '../@types/usuario';
 import md5 from 'md5';
+import CryptoJs from 'crypto-js' 
+import { criptografia } from 'src/uteis/criptografia';
 
 export class ModelUsuario {
+
 	 async insereUsuario(usuario: Usuario): Promise<number[]> {
-	 	const retorno: number[] = await dbconn('usuario').insert({ nome: usuario.nome, senha: md5(usuario.senha), rep_senha: md5(usuario.rep_senha)});
+		criptografia(usuario)
+	 	const retorno: number[] = await dbconn('usuario').insert({ nome: usuario.nome, senha: usuario.senha, rep_senha: usuario.senha });
 	 	return retorno;
 	 }
 
