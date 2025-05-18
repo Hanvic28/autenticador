@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>Criativa</title>
-		<link rel="stylesheet" type="text/css" href="../styles/principal.css" />
+		<link rel="stylesheet" type="text/css" href="../styles/login.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<!-- <style type="text/css">
             
@@ -20,7 +20,7 @@
 
 			<nav>
 				<a class="logo" href="index.html">
-					<img src="../material/CRIATIVA E BORDADOS LOGO 1 COLORIDA.png" class="logo_img">Criativa Bordados
+					Criativa Bordados
 				  </a>
 				</div>
 				<ul class="nav-list">
@@ -33,29 +33,34 @@
 
 		</header>
 		<section>
-			<form action="http://localhost:32/login" method="post">
-				<label for="nome"> Informe Usuario </label>
-				<input type="text" name = "nome"></input>
-				<br/>
-				<label for="senha"> Informe Senha </label>
-				<input type="password" name = "senha"></input>
+			<div class="tabela">
+				<div class="login">
+					<form action="http://localhost:32/login" method="post">
+						<label for="nome"> Informe Usuario </label>
+						<input type="text" name = "nome"></input>
+						<br/>
+						<label for="senha"> Informe Senha </label>
+						<input type="password" name ="senha"></input>
 			
-				<button type="submit"> Login </button>
-			</form>
+						<button type="submit" class="botao"> Login </button>
+					</form>
+				</div>
 		</section>
-        <div class="footerBack">
-		    <footer>
-			    <h4>Fale conosco</h4>
-			    <div id="whatsapp" class='fas fa-comment'>Whatsapp</div>
-			    <p>32 9864-8404</p>
-			    <p>ou acesse <h5>www.ewgresgate.com</h5></p>
-			    <h5>Obs: Datas e horários agendados </h5>
-			    <ul>
-				    <li><a href="cadastro.html">Cadastro</a></li>
-				    <li><a href="login.html">Login</a></li>
-				    <li><a href="Sobre.html">Sobre nós</a></li>
-			    </ul>
-		    </footer>
+
+        	<div class="footerBack">
+	    		<footer>
+		    		<h4>Fale conosco</h4>
+		    		<div id="whatsapp" class='fas fa-comment'>Whatsapp</div>
+		    		<p>32 9864-8404</p>
+		    		<p>ou acesse <h5>www.ewgresgate.com</h5></p>
+		    		<h5>Obs: Datas e horários agendados </h5>
+		   			<ul>
+			  			<li><a href="cadastro.html">Cadastro</a></li>
+			  			<li><a href="login.html">Login</a></li>
+			 			<li><a href="Sobre.html">Sobre nós</a></li>
+			   		</ul>				
+		    	</footer>
+			</div>
        </div>
 	</body>
 </html>
