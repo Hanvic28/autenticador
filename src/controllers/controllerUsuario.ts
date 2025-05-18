@@ -20,7 +20,6 @@ export class UsuarioController {
 			console.log(req.body);
 			res.status(201).send({ status: 'Ok', message: 'Usuario Cadastrado com sucesso' });
 		} catch (err) {
-			console.log('Passei aqui');
 			res.status(400).send({ status: 'NOK', messagem: err.message });
 		}
 	}
@@ -66,26 +65,32 @@ async function validaEntrada(dadosEntrada: Usuario): Promise<any> {
 	}
 }
 
-async function validaLogin(dadosEntrada: Usuario): Promise<any> {
+export async function validaLogin(dadosEntrada: Usuario): Promise<any> {
 	try {
 		const schema = Joi.object({
 			nome: Joi.string().min(4).max(150).required(),
 			senha: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),
 		});
 
+
 		const value: Usuario = await schema.validateAsync(dadosEntrada);
 	} catch (erro) {
 		throw new Error('Erro de validação: ' + erro.message);
 	}
+
+
+
+	
 }
 
 async function selecionaUsuario(usuario: Usuario): Promise<any> {
 	try {
 		const modelUsuario = new ModelUsuario();
-		const retorno: Usuario[] = await modelUsuario.Login(usuario);
+		const retorno: Usuario[] = await modelUsuario.Login(usuario)
 
 		if (retorno.length == 0) {
 			return retorno;
+			
 		}
 
 		return true;
@@ -93,3 +98,4 @@ async function selecionaUsuario(usuario: Usuario): Promise<any> {
 		throw new Error('Banco de dados não logado');
 	}
 }
+

@@ -7,6 +7,6 @@ export const dbconn = knex({
 		port: 3306,
 		user: 'root',
 		password: '',
-		database: 'autenticador',
+		database: 'autenticadores',
 	},
 });

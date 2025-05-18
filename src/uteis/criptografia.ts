@@ -1,12 +1,28 @@
+
 import { Usuario } from '../@types/usuario';
-import CryptoJs from 'crypto-js' 
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+const senha = 's0/\/\P4$$w0rD';
+const outraSenha = 'not_bacon';
 
+const hash = bcrypt.hashSync(senha, saltRounds);
+bcrypt.compareSync(senha, hash); // true
+bcrypt.compareSync(outraSenha, hash); // false
 
+async function checaSenha(Usuario: any, password: any) {
+    //... fetch user from a db etc.
 
-export async function criptografia(dados: Usuario): Promise <any>{
+    const match = await bcrypt.compare(password, Usuario.nome.passwordHash);
 
-    var criptoHash = CryptoJs.AES.encrypt(dados.nome, dados.senha).toString()
-    console.log(criptoHash)
-    return dados;
+    if(match) {
+        //login
+    }
+
+    //...
 }
 
+async function criptografia(senha: any){
+    const hash = bcrypt.hashSync(senha, saltRounds);
+}
+
+criptografia(12345678900);
